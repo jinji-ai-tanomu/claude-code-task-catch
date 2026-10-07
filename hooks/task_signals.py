@@ -133,3 +133,16 @@ def parse(line):
     except ValueError:
         return None
     return entry if isinstance(entry, dict) else None
+
+def config_problem():
+    """設定が使えない理由を、人が読める1行で返す（手動実行のときだけ使う）。"""
+    try:
+        with open(CONFIG_PATH, encoding="utf-8") as f:
+            raw = json.load(f)
+    except OSError:
+        return f"設定ファイルがありません（{CONFIG_PATH}）"
+    except ValueError as e:
+        return f"設定ファイルの書式が壊れています（{CONFIG_PATH}: {e}）"
+    if not isinstance(raw, dict) or not str(raw.get("notion_task_db") or "").strip():
+        return f"設定が未完了です（{CONFIG_PATH} の notion_task_db を入れてください）"
+    return "設定を読めませんでした"

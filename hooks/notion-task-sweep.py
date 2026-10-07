@@ -12,7 +12,7 @@ import sys
 import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from task_signals import CONFIG_PATH, has_task_signal, load_config, parse, user_text  # noqa: E402
+from task_signals import CONFIG_PATH, config_problem, has_task_signal, load_config, parse, user_text  # noqa: E402
 
 PROJECTS_DIR = os.path.expanduser("~/.claude/projects")
 MAX_CHARS = 400
@@ -21,7 +21,7 @@ MAX_CHARS = 400
 def main():
     cfg = load_config()
     if cfg is None:
-        print(f"設定が未完了です（{CONFIG_PATH} の notion_task_db を入れてください）")
+        print(config_problem())
         return 0
 
     hours = cfg["sweep_hours"]
