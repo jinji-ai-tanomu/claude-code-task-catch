@@ -19,7 +19,8 @@ Claude が登録し忘れても、応答の終わりに自動チェックが走�
 - Claude Code が使えること（ターミナルで `claude` と打つと起動する状態）
 - Claude Code から Notion に繋がっていること（Notion の MCP コネクタが接続済み。Claude Code で「Notionで◯◯を検索して」と頼んで結果が返ってくればOK）
 - タスクを入れる Notion データベースが1つあること（下の「Notion DBの要件」を参照）
-- Mac の場合、`python3` が使えること（入っていなければ install.sh が案内します）
+- `python3` が使えること（入っていなければ install.sh が案内します）
+- **動作を確認したのは macOS だけです。Windows には対応していません。** Mac 上で日本語Windowsの文字コードを再現したところ、応答ごとのチェックと1日1回の回収が、日本語のタスクをエラーも出さずに取りこぼしました。install.sh も bash と python3 が使える Mac を前提に作っています（Windows と Linux の実機では試していません）
 
 ## Notion DBの要件
 
